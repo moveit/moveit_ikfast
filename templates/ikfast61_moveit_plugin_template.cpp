@@ -870,6 +870,13 @@ bool IKFastKinematicsPlugin::searchPositionIK(const geometry_msgs::Pose &ik_pose
       break;
     }
 
+    if (ros::Time::now() > maxTime)
+    {
+      ROS_DEBUG_STREAM_NAMED("ikfast", "IK search exceeded search time of " << timeout << " seconds");
+      error_code.val = moveit_msgs::MoveItErrorCodes::TIMED_OUT;
+      break;
+    }
+
     vfree[0] = initial_guess+search_discretization_*counter;
     //ROS_DEBUG_STREAM_NAMED("ikfast","Attempt " << counter << " with 0th free joint having value " << vfree[0]);
   }
