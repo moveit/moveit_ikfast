@@ -890,8 +890,6 @@ bool IKFastKinematicsPlugin::searchPositionIK(const geometry_msgs::Pose &ik_pose
     return true;
   }
 
-  // No solution found
-  error_code.val = moveit_msgs::MoveItErrorCodes::NO_IK_SOLUTION;
   return false;
 }
 
